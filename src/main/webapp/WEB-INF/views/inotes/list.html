@@ -5,6 +5,26 @@
     <title> List Inotes</title>
 </head>
 <body>
-aaaaaaaaaaaa
+<table border="1">
+    <tr>
+        <td>STT</td>
+        <td>Title</td>
+        <td>Type</td>
+        <td>Edit|Delete</td>
+    </tr>
+    <th:block th:each="inote:${inotes}">
+    <tr>
+        <td>1</td>
+        <td><a th:href="@{/inotes/views/{id}(id=${inote.id})}" th:text="${inote.title}"></a></td>
+        <td th:text="${inote.typeID}"></td>
+        <td><a th:href="@{/inotes/edit/{id}(id=${inote.id})}"> edit</a> | <a th:href="@{/inotes/delete/{id}(id=${inote.id})}"> delete</a> </td>
+    </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{'/inotes'(page=${inotes.number - 1})}" th:if="${inotes.hasPrevious()}">Previous</a>
+    <span th:text="${inotes.number + 1}"></span>/<span th:text="${inotes.totalPages}"></span>
+    <a th:href="@{'/inotes'(page=${inotes.number + 1})}" th:if="${inotes.hasNext()}">Next</a>
+</div>
 </body>
 </html>
