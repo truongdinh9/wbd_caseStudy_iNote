@@ -1,10 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title> List Inotes</title>
+    <title>Create note</title>
 </head>
 <body>
+<h3>Create Note</h3>
+<p>
+    <a th:href="@{/inotes}">Back to notes list</a>
+</p>
+<!--<th:block th:if="${message}">-->
+    <!--<p th:text="${message}"></p>-->
+<!--</th:block>-->
+<form th:action="@{/inotes/save}" th:object="${inote}" method="post">
+    <table >
+        <tr>
+            <td>Title</td>
+            <td><label>
+                <input type="text" th:field="*{title}"/>
+            </label></td>
+        </tr>
+        <tr>
+            <td>Type <p> </p></td>
+            <td>
+                <select th:field="*{type}">
+                    <option th:each="t : ${types}" th:value="${t.id}" th:text="${t.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Content</td>
+            <td><label>
+                <textarea type="text" th:rows="10" th:cols="40"  th:field="*{content}"></textarea>
+            </label></td>
+        </tr>
 
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create note"></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

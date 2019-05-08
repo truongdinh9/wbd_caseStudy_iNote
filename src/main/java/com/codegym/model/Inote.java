@@ -1,9 +1,6 @@
 package com.codegym.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Inote {
@@ -12,17 +9,25 @@ public class Inote {
     private Long id;
     private String title;
     private String content;
-    private String typeID;
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private Note_type type;
 
     public Inote() {
     }
 
-    public String getTypeID() {
-        return typeID;
+    public Inote(String title, String content, Note_type type) {
+        this.title = title;
+        this.content = content;
+        this.type = type;
     }
 
-    public void setTypeID(String typeID) {
-        this.typeID = typeID;
+    public Note_type getType() {
+        return type;
+    }
+
+    public void setType(Note_type type) {
+        this.type = type;
     }
 
     public Long getId() {

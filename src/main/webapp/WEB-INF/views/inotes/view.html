@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit</title>
 </head>
 <body>
+<h1> Found a Note </h1>
+<p>
+    <a th:href="@{/inotes}">Back to notes list</a>
+</p>
 
+<form th:object="${inote}">
+    <input type="hidden" th:field="*{id}">
+    <table border="1">
+        <tr>
+            <td>Title</td>
+            <td th:text="*{title}"></td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td th:text="*{type.name}">
+            </td>
+        </tr>
+        <tr>
+            <td>Content</td>
+            <td th:text="*{content}"></td>
+        </tr>
+
+    </table>
+</form>
 </body>
 </html>

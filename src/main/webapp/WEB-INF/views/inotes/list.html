@@ -5,6 +5,8 @@
     <title> List Inotes</title>
 </head>
 <body>
+<h1> List all notes </h1>
+<a th:href="@{/inotes/create}">Create new note</a>
 <table border="1">
     <tr>
         <td>STT</td>
@@ -16,7 +18,7 @@
     <tr>
         <td>1</td>
         <td><a th:href="@{/inotes/views/{id}(id=${inote.id})}" th:text="${inote.title}"></a></td>
-        <td th:text="${inote.typeID}"></td>
+        <td th:text="${inote.type.name}"></td>
         <td><a th:href="@{/inotes/edit/{id}(id=${inote.id})}"> edit</a> | <a th:href="@{/inotes/delete/{id}(id=${inote.id})}"> delete</a> </td>
     </tr>
     </th:block>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <name>Edit</name>
+</head>
+<body>
+<h1> Are you sure delete this type?</h1>
+<p>
+    <a th:href="@{/types}">Back to types list</a>
+</p>
+
+<form th:action="@{/types/delete}" th:object="${type}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <table >
+        <tr>
+            <td>name</td>
+            <td th:text="*{name}"> </td>
+        </tr>
+        <!--<tr>-->
+        <!--<td>Type <p> </p></td>-->
+        <!--<td>-->
+        <!--<select th:field="*{type}">-->
+        <!--<option th:each="t : ${types}" th:value="${t.id}" th:text="${t.name}"></option>-->
+        <!--</select>-->
+        <!--</td>-->
+        <!--</tr>-->
+        <tr>
+            <td>description</td>
+            <td th:text="*{description}"> </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="delete"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

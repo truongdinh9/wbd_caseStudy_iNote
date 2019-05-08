@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> List Inotes</title>
+</head>
+<body>
+<h1 th:text="'List all notes of type '+${type.name}" ></h1>
+<a th:href="@{/inotes}">Back to inotes</a>
+<a th:href="@{/types}">Back to list type</a>
+<table border="1">
+    <tr>
+        <td>STT</td>
+        <td>Title</td>
+        <td>Type</td>
+    </tr>
+    <th:block th:each="inote:${inotes}">
+        <tr>
+            <td>1</td>
+            <td th:text="${inote.title}"></td>
+            <td th:text="${inote.type.name}"></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

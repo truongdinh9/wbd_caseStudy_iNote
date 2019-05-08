@@ -1,6 +1,7 @@
 package com.codegym.service.impl;
 
 import com.codegym.model.Inote;
+import com.codegym.model.Note_type;
 import com.codegym.repository.InoteRepository;
 import com.codegym.service.InotesManagerment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,10 @@ public class InotesManagermentImpl implements InotesManagerment {
     public void remove(Long id) {
         inoteRepository.delete(id);
 
+    }
+
+    @Override
+    public Iterable<Inote> findAllbytype(Note_type type) {
+        return inoteRepository.findAllByType(type);
     }
 }

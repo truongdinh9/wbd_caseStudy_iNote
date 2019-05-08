@@ -1,7 +1,9 @@
 package com.codegym.config;
 
 import com.codegym.service.InotesManagerment;
+import com.codegym.service.Type_InotesManagerment;
 import com.codegym.service.impl.InotesManagermentImpl;
+import com.codegym.service.impl.Type_InotesManagermentImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -57,6 +59,8 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     // Write Injection Here
     @Bean
     public InotesManagerment inotesManagerment(){return new InotesManagermentImpl();}
+    @Bean
+    public Type_InotesManagerment typeManagerment(){return new Type_InotesManagermentImpl();}
 
     //Thymleaf
     @Bean
@@ -75,7 +79,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     public ITemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver=new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/views");
+        templateResolver.setPrefix("/WEB-INF/views/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         return templateResolver;
