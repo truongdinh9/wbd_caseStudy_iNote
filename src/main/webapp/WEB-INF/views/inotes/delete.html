@@ -8,6 +8,9 @@
 <h1> Are you sure delete this Note?</h1>
 <p>
     <a th:href="@{/inotes}">Back to notes list</a>
+    <br>
+    <a th:href="@{/types}">Back to types list</a>
+
 </p>
 
 <form th:action="@{/inotes/delete}" th:object="${inote}" method="post">

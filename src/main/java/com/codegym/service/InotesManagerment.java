@@ -10,6 +10,7 @@ public interface InotesManagerment {
     void save(Inote inote);
     Inote findById(Long id);
     void remove(Long id);
-    Iterable<Inote> findAllbytype(Note_type type);
-
+    Iterable<Inote> findAllByType(Note_type type);
+    Page<Inote> findAllByType(Note_type type,Pageable pageable);
+    Page<Inote>findAllByTitle(String title, Pageable pageable);
 }

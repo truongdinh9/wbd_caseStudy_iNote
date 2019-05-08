@@ -53,29 +53,32 @@ public class TypeController {
     }
 
     @PostMapping("/types/edit")
-    public ModelAndView edit(@ModelAttribute("type") Note_type type, RedirectAttributes redirect){
+    public ModelAndView edit(@ModelAttribute("type") Note_type type, RedirectAttributes redirect) {
         typeManagerment.save(type);
-        redirect.addFlashAttribute("message","Edited type successfully");
+        redirect.addFlashAttribute("message", "Edited type successfully");
         return new ModelAndView("redirect:/types");
     }
+
     @GetMapping("types/views/{id}")
-    public ModelAndView view(@PathVariable("id") Long id){
-       Note_type type= typeManagerment.findById(id);
-       Iterable<Inote> inotes =inotesManagerment.findAllbytype(type);
-       ModelAndView modelAndView=new ModelAndView("types/view");
-       modelAndView.addObject("type",type);
-       modelAndView.addObject("inotes",inotes);
+    public ModelAndView view(@PathVariable("id") Long id) {
+        Note_type type = typeManagerment.findById(id);
+        Iterable<Inote> inotes = inotesManagerment.findAllByType(type);
+        ModelAndView modelAndView = new ModelAndView("types/view");
+        modelAndView.addObject("type", type);
+        modelAndView.addObject("inotes", inotes);
         return modelAndView;
     }
+
     @GetMapping("/types/delete/{id}")
-    public ModelAndView delete(@PathVariable Long id){
-        Note_type type=typeManagerment.findById(id);
-        return new ModelAndView("types/delete", "type",type);
+    public ModelAndView delete(@PathVariable Long id) {
+        Note_type type = typeManagerment.findById(id);
+        return new ModelAndView("types/delete", "type", type);
     }
+
     @PostMapping("/types/delete")
-    public ModelAndView delete(Note_type type){
+    public ModelAndView delete(Note_type type) {
         typeManagerment.remove(type.getId());
-        return new  ModelAndView("redirect:/types");
+        return new ModelAndView("redirect:/types");
     }
 
 }

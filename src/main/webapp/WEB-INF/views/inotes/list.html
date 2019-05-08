@@ -5,28 +5,57 @@
     <title> List Inotes</title>
 </head>
 <body>
-<h1> List all notes </h1>
-<a th:href="@{/inotes/create}">Create new note</a>
-<table border="1">
+
+<h1 style="text-align: center"> List all notes </h1>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<div style="text-align: center">
+    <a th:href="@{/types}">Back to types list</a>
+    <br>
+    <a th:href="@{/inotes/create}">Create new note</a>
+
+
+</div>
+<br>
+<form style="text-align: center">
+    Search by title:
+    <label>
+        <input type="text" name="find">
+    </label>
+    <input type="submit" th:value="Search">
+    <br>
+</form>
+<form style="text-align: center" id="s">
+    Type:
+    <select name="type" onchange="document.getElementById('s').submit()">
+        <option th:selected="selected" th:if="${typ.isPresent()}" th:text="${typ.get().name}"
+                th:value="${typ.get().id}"></option>
+        <option th:each="t : ${types}" th:value="${t.id}" th:text="${t.name}"></option>
+    </select>
+</form>
+<table border="1" align="center">
     <tr>
         <td>STT</td>
         <td>Title</td>
         <td>Type</td>
         <td>Edit|Delete</td>
     </tr>
-    <th:block th:each="inote:${inotes}">
-    <tr>
-        <td>1</td>
-        <td><a th:href="@{/inotes/views/{id}(id=${inote.id})}" th:text="${inote.title}"></a></td>
-        <td th:text="${inote.type.name}"></td>
-        <td><a th:href="@{/inotes/edit/{id}(id=${inote.id})}"> edit</a> | <a th:href="@{/inotes/delete/{id}(id=${inote.id})}"> delete</a> </td>
-    </tr>
+    <th:block th:each="inote,stt:${inotes}">
+        <tr>
+            <td th:text="${stt.count}"></td>
+            <td><a th:href="@{/inotes/views/{id}(id=${inote.id})}" th:text="${inote.title}"></a></td>
+            <td th:text="${inote.type.name}"></td>
+            <td><a th:href="@{/inotes/edit/{id}(id=${inote.id})}"> edit</a> | <a
+                    th:href="@{/inotes/delete/{id}(id=${inote.id})}"> delete</a></td>
+        </tr>
     </th:block>
 </table>
-<div>
-    <a th:href="@{'/inotes'(page=${inotes.number - 1})}" th:if="${inotes.hasPrevious()}">Previous</a>
-    <span th:text="${inotes.number + 1}"></span>/<span th:text="${inotes.totalPages}"></span>
-    <a th:href="@{'/inotes'(page=${inotes.number + 1})}" th:if="${inotes.hasNext()}">Next</a>
+<div style="text-align: center">
+    <a style="text-align: center" th:href="@{'/inotes'(page=${inotes.number - 1})}" th:if="${inotes.hasPrevious()}">Previous</a>
+    <span style="text-align: center" th:text="${inotes.number + 1}"></span>/<span style="text-align: center"
+                                                                                  th:text="${inotes.totalPages}"></span>
+    <a style="text-align: center" th:href="@{'/inotes'(page=${inotes.number + 1})}" th:if="${inotes.hasNext()}">Next</a>
 </div>
 </body>
 </html>

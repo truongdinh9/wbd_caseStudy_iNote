@@ -35,7 +35,17 @@ public class InotesManagermentImpl implements InotesManagerment {
     }
 
     @Override
-    public Iterable<Inote> findAllbytype(Note_type type) {
+    public Iterable<Inote> findAllByType(Note_type type) {
         return inoteRepository.findAllByType(type);
+    }
+
+    @Override
+    public Page<Inote> findAllByType(Note_type type, Pageable pageable) {
+        return inoteRepository.findAllByType(type,pageable);
+    }
+
+    @Override
+    public Page<Inote> findAllByTitle(String title, Pageable pageable) {
+        return inoteRepository.findAllByTitleContaining(title,pageable);
     }
 }
